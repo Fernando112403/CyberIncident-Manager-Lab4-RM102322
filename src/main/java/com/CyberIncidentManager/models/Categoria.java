@@ -20,17 +20,14 @@ public class Categoria {
 
     private String nivelRiesgo;
 
-    private Boolean estado = true;
-
     public Categoria() {
     }
 
-    public Categoria(Integer id, String nombre, String descripcion, String nivelRiesgo, Boolean estado) {
+    public Categoria(Integer id, String nombre, String descripcion, String nivelRiesgo) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.nivelRiesgo = nivelRiesgo;
-        this.estado = estado;
     }
 
     public Integer getId() {
@@ -63,13 +60,5 @@ public class Categoria {
 
     public void setNivelRiesgo(String nivelRiesgo) {
         this.nivelRiesgo = nivelRiesgo;
-    }
-
-    public Boolean getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
     }
 }

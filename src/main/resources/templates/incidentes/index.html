@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Incidentes de Ciberseguridad</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">CyberIncident Manager</a>
+
+        <div>
+            <a class="btn btn-outline-light btn-sm" href="/categorias">Categorías</a>
+            <a class="btn btn-outline-light btn-sm" href="/incidentes">Incidentes</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Incidentes de Ciberseguridad</h2>
+        <a href="/incidentes/crear" class="btn btn-primary">Nuevo Incidente</a>
+    </div>
+
+    <table class="table table-bordered table-striped bg-white">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Categoría</th>
+                <th>Fecha Reporte</th>
+                <th>Criticidad</th>
+                <th>Estado</th>
+                <th>Activo</th>
+                <th>Usuario Reporta</th>
+                <th>Equipo Afectado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="incidente : ${incidentes}">
+                <td th:text="${incidente.id}"></td>
+                <td th:text="${incidente.titulo}"></td>
+                <td th:text="${incidente.categoria != null ? incidente.categoria.nombre : 'Sin categoría'}"></td>
+                <td th:text="${incidente.fechaReporte}"></td>
+                <td>
+                    <span th:if="${incidente.criticidad == 'Baja'}" class="badge bg-success">Baja</span>
+                    <span th:if="${incidente.criticidad == 'Media'}" class="badge bg-warning text-dark">Media</span>
+                    <span th:if="${incidente.criticidad == 'Alta'}" class="badge bg-danger">Alta</span>
+                    <span th:if="${incidente.criticidad == 'Crítica'}" class="badge bg-dark">Crítica</span>
+                </td>
+                <td th:text="${incidente.estado}"></td>
+                <td>
+    <span th:if="${incidente.activo}" class="badge bg-success">Sí</span>
+    <span th:unless="${incidente.activo}" class="badge bg-secondary">No</span>
+</td>
+                <td th:text="${incidente.usuarioReporta}"></td>
+                <td th:text="${incidente.equipoAfectado}"></td>
+             
+                <td>
+                    <a th:href="@{/incidentes/editar/{id}(id=${incidente.id})}" class="btn btn-warning btn-sm">Editar</a>
+
+                    <a th:href="@{/incidentes/eliminar/{id}(id=${incidente.id})}"
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('¿Seguro que deseas eliminar este incidente?')">
+                       Eliminar
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>

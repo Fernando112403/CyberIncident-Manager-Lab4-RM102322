@@ -22,9 +22,19 @@ public class Incidente {
 
     private String titulo;
 
+	private Boolean activo;
+    
     private String descripcion;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    public Boolean getActivo() {
+		return activo;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
+	}
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaReporte;
 
     private String criticidad;
