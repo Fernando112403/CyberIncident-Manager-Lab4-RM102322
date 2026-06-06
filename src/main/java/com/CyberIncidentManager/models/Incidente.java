@@ -45,6 +45,7 @@ public class Incidente {
 
     private String equipoAfectado;
 
+    
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
